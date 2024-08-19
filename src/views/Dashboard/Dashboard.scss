@@ -1,0 +1,27 @@
+@import '@/assets/styles/main.scss';
+
+.Dashboard {
+  .welcome-section {
+    text-align: center;
+    padding-bottom: 1.5em;
+      
+
+    h1 {
+      color: $azul-principal;
+      font-size: 4rem;
+      font-family: 'irish', Arial, Helvetica, sans-serif;
+    }
+
+    .username {
+      color: $amarelo-principal;
+      font-weight: bold;
+    }
+
+    .intro-text {
+      color: $cor-Texto;
+      font-size: 1rem;
+      margin-top: 0.5em;
+    }
+  }
+}
+  
