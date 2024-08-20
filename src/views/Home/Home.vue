@@ -4,7 +4,7 @@
       <div class="first-line">
         <img src="@/assets/styles/img/logo.png" alt="logo" class="logo">
         <ul class="top-menu">
-          <li><router-link to="/" class="a">Home</router-link></li>
+          <li><router-link to="/results" class="a">Home</router-link></li>
           <li><router-link to="/categorias" class="a">Categorias</router-link></li>
           <li><router-link to="/colecoes" class="a">Coleções</router-link></li>
         </ul>
@@ -19,10 +19,9 @@
         <div class="search-wrapper">
           <span class="search-container">
             <i class="fa fa-search"></i>
-            <input type="text" id="query" placeholder="Encontre seu novo livro aqui..." class="search-input"
-              name="query">
+            <input type="text" v-model="searchQuery" placeholder="Encontre seu novo livro aqui..." class="search-input">
           </span>
-          <form action="resultado-busca.html" method="GET" @submit.prevent="handleSearch">
+          <form @submit.prevent="handleSearch">
             <button type="submit" class="search-button">Buscar</button>
           </form>
         </div>
@@ -110,17 +109,31 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useSearchBook } from '../../stores/searchBook';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Home',
   setup() {
     const searchBook = useSearchBook();
+    const searchQuery = ref('');
+    const router = useRouter();
+   
+      searchBook.fetchBooks('romance', 'launch');
+      searchBook.fetchBooks('mais vendidos', 'bestSeller');
+  
 
-    searchBook.fetchBooks("romance", 'launch');
-    searchBook.fetchBooks("mais vendidos", 'bestSeller');
+    const handleSearch = () => {
+      if (searchQuery.value.trim()) {
+      searchBook.fetchBooks(searchQuery.value, 'search');
+      router.push({ name: 'Results', query: { query: searchQuery.value } });
+      }
+    };
+    console.log('Search Query:', searchQuery.value);
+    console.log('Search Results:', searchBook.searchResults);
 
-    return { searchBook };
+    return { searchBook, searchQuery, handleSearch};
   },
   methods: {
     sliderScrollLeft(refName) {

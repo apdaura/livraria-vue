@@ -7,11 +7,14 @@ export const useSearchBook = defineStore('searchBook', {
     bestSellerBooks: [],
     newBooks: [],
     recommendedBooks: [],
+    searchResults: [],
+    loading: false,
     imagePadding: 20,
     scrollPerClick: 0,
   }),
   actions: {
     async fetchBooks(query, type) {
+      this.loading = true;
       const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}`;
       try {
         const result = await axios.get(url);
@@ -24,6 +27,8 @@ export const useSearchBook = defineStore('searchBook', {
           this.newBooks = books;
         } else if (type === 'recommended') {
           this.recommendedBooks = books;
+        } else if (type === 'search') {
+          this.searchResults = books; 
         }
         if (books.length > 0) {
         const firstImage = books[0]?.volumeInfo.imageLinks?.thumbnail;
@@ -34,6 +39,8 @@ export const useSearchBook = defineStore('searchBook', {
       }
     catch (error) {
         console.error('Erro ao buscar livros:', error);
+      } finally {
+        this.loading = false;
       }
     },
     sliderScrollLeft(slider) {

@@ -13,7 +13,7 @@ const routes = [
   { path: '/colecoes', component: Colecoes },
   { path: '/login', component: Login },
   { path: '/dashboard', component: Dashboard },
-  { path: '/results', component: Results },
+  { path: '/results', name: 'Results', component: Results },
 
 ];
 
