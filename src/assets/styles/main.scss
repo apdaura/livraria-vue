@@ -2,8 +2,9 @@
     font-family: 'irish';
     src: url('../../assets/styles/fonts/IrishGrover-Regular.ttf') format('truetype');
 }
+
 $branco-principal: #F9F9F9;
-$amarelo-principal: rgb(254, 203, 28);
+$amarelo-principal: #fecb1c;
 $amarelo-hover: #9C7C10;
 $azul-principal: #15171f;
 $cinza-unselected: #c0c0c0;
@@ -19,6 +20,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
 header {
     position: relative;
     background-image: url('./img/fundo-menu.png');
@@ -209,6 +211,8 @@ main {
 .inline-element {
     display: inline-block;
     margin: 0;
+    text-decoration: none;
+    color: #15171f;
 }
 
 .carousel {

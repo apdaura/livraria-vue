@@ -30,7 +30,7 @@
     <main>
       <div class="selection">
         <h1 class="inline-element">Lançamentos</h1>
-        <p class="inline-element">Ver todos</p>
+        <a href="https://books.google.com.br" target="_blank" class="inline-element">Ver todos</a>
       </div>
       <div class="carousel">
         <div class="carousel-wrapper" ref="launchResults">
@@ -44,7 +44,7 @@
       </div>
       <div class="selection">
         <h1 class="inline-element">Mais Vendidos</h1>
-        <p class="inline-element">Ver todos</p>
+        <a href="https://books.google.com.br" target="_blank" class="inline-element">Ver todos</a>
       </div>
       <div class="carousel">
         <div class="carousel-wrapper" ref="bestSellerResults">
@@ -71,40 +71,40 @@
     </ul>
     <div id="results"></div>
   </div> -->
-  </main>
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section about">
-        <h3>Sobre Nós</h3>
-        <p>A Livraria Daura é sua fonte confiável para uma ampla seleção de livros. Desde clássicos atemporais até os
-          mais recentes lançamentos, temos algo para todos os amantes da leitura.</p>
-      </div>
-      <div class="footer-section links">
-        <h3>Links Rápidos</h3>
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/categorias">Categorias</router-link></li>
-          <li><router-link to="/colecoes">Coleções</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
-        </ul>
-      </div>
-      <div class="footer-section contact">
-        <h3>Contato</h3>
-        <p>Rua dos Livros, 123, Cidade, Estado, 45678-000</p>
-        <p>Email: contato@livrariadaura.com.br</p>
-        <p>Telefone: (11) 1234-5678</p>
-        <div class="socials">
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>Sobre Nós</h3>
+          <p>A Livraria Daura é sua fonte confiável para uma ampla seleção de livros. Desde clássicos atemporais até os
+            mais recentes lançamentos, temos algo para todos os amantes da leitura.</p>
+        </div>
+        <div class="footer-section links">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/categorias">Categorias</router-link></li>
+            <li><router-link to="/colecoes">Coleções</router-link></li>
+            <li><router-link to="/login">Login</router-link></li>
+          </ul>
+        </div>
+        <div class="footer-section contact">
+          <h3>Contato</h3>
+          <p>Rua dos Livros, 123, Cidade, Estado, 45678-000</p>
+          <p>Email: contato@livrariadaura.com.br</p>
+          <p>Telefone: (11) 1234-5678</p>
+          <div class="socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 Livraria Daura. Todos os direitos reservados.</p>
-    </div>  
-  </footer>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Livraria Daura. Todos os direitos reservados.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -119,21 +119,21 @@ export default {
     const searchBook = useSearchBook();
     const searchQuery = ref('');
     const router = useRouter();
-   
-      searchBook.fetchBooks('romance', 'launch');
-      searchBook.fetchBooks('mais vendidos', 'bestSeller');
-  
+
+    searchBook.fetchBooks('romance', 'launch');
+    searchBook.fetchBooks('mais vendidos', 'bestSeller');
+
 
     const handleSearch = () => {
       if (searchQuery.value.trim()) {
-      searchBook.fetchBooks(searchQuery.value, 'search');
-      router.push({ name: 'Results', query: { query: searchQuery.value } });
+        searchBook.fetchBooks(searchQuery.value, 'search');
+        router.push({ name: 'Results', query: { query: searchQuery.value } });
       }
     };
     console.log('Search Query:', searchQuery.value);
     console.log('Search Results:', searchBook.searchResults);
 
-    return { searchBook, searchQuery, handleSearch};
+    return { searchBook, searchQuery, handleSearch };
   },
   methods: {
     sliderScrollLeft(refName) {
@@ -153,6 +153,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/main.scss';
-@import './Home.scss';
+  @import '@/assets/styles/main.scss';
+  @import './Home.scss';
 </style>
